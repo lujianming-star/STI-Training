@@ -1,0 +1,27 @@
+--cpu Cortex-M3
+"training1_f103\startup_stm32f103x6.o"
+"training1_f103\main.o"
+"training1_f103\gpio.o"
+"training1_f103\tim.o"
+"training1_f103\usart.o"
+"training1_f103\stm32f1xx_it.o"
+"training1_f103\stm32f1xx_hal_msp.o"
+"training1_f103\stm32f1xx_hal_gpio_ex.o"
+"training1_f103\stm32f1xx_hal_tim.o"
+"training1_f103\stm32f1xx_hal_tim_ex.o"
+"training1_f103\stm32f1xx_hal_uart.o"
+"training1_f103\stm32f1xx_hal.o"
+"training1_f103\stm32f1xx_hal_rcc.o"
+"training1_f103\stm32f1xx_hal_rcc_ex.o"
+"training1_f103\stm32f1xx_hal_gpio.o"
+"training1_f103\stm32f1xx_hal_dma.o"
+"training1_f103\stm32f1xx_hal_cortex.o"
+"training1_f103\stm32f1xx_hal_pwr.o"
+"training1_f103\stm32f1xx_hal_flash.o"
+"training1_f103\stm32f1xx_hal_flash_ex.o"
+"training1_f103\stm32f1xx_hal_exti.o"
+"training1_f103\system_stm32f1xx.o"
+--library_type=microlib --strict --scatter "training1_f103\training1_f103.sct"
+--summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list "training1_f103.map" -o training1_f103\training1_f103.axf
