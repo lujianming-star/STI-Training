@@ -21,6 +21,7 @@
 "training1_f103\stm32f1xx_hal_flash_ex.o"
 "training1_f103\stm32f1xx_hal_exti.o"
 "training1_f103\system_stm32f1xx.o"
+"training1_f103\hmi.o"
 --library_type=microlib --strict --scatter "training1_f103\training1_f103.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

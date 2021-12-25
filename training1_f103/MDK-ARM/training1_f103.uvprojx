@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F103x6,USE_HAL_DRIVER,STM32F103x6</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc;../Drivers/STM32F1xx_HAL_Driver/Inc;../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;../Drivers/CMSIS/Device/ST/STM32F1xx/Include;../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;  ../Drivers/STM32F1xx_HAL_Driver/Inc;  ../Drivers/STM32F1xx_HAL_Driver/Inc/Legacy;  ../Drivers/CMSIS/Device/ST/STM32F1xx/Include;  ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -512,14 +512,14 @@
           <GroupName>HMI</GroupName>
           <Files>
             <File>
-              <FileName>hmi.h</FileName>
-              <FileType>5</FileType>
-              <FilePath>.\hmi.h</FilePath>
-            </File>
-            <File>
               <FileName>hmi.c</FileName>
               <FileType>1</FileType>
               <FilePath>.\hmi.c</FilePath>
+            </File>
+            <File>
+              <FileName>hmi.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\hmi.h</FilePath>
             </File>
           </Files>
         </Group>

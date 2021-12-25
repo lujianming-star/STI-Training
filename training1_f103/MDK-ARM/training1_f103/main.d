@@ -31,3 +31,4 @@ training1_f103\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 training1_f103\main.o: ../Inc/tim.h
 training1_f103\main.o: ../Inc/usart.h
 training1_f103\main.o: ../Inc/gpio.h
+training1_f103\main.o: ../Inc/hmi.h

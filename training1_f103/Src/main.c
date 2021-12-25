@@ -26,7 +26,7 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
-
+#include "hmi.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -50,6 +50,7 @@
 uint32_t cnt_temp;   //计数中间量
 float pulse;					//脉冲数
 float rounds;					//圈数
+uint8_t pwm;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -57,7 +58,12 @@ void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
 //读取定时器计数值
 uint32_t read_cnt();
-uint8_t pwm;
+void HMISendstart()
+{
+	HAL_Delay(200);
+	HMISendb(0xff);
+	HAL_Delay(200);
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
