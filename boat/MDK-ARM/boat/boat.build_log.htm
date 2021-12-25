@@ -1,0 +1,175 @@
+<html>
+<body>
+<pre>
+<h1>µVision Build Log</h1>
+<h2>Tool Versions:</h2>
+IDE-Version: ¦ÌVision V5.25.3.0
+Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
+License Information: 123 123, 123, LIC=3UUKP-MV93B-EZZWX-HWEMF-A7NG6-02RQE
+ 
+Tool Versions:
+Toolchain:       MDK-ARM Professional  Version: 5.18
+Toolchain Path:  G:\keil\ARM\ARMCC\Bin
+C Compiler:      Armcc.exe V5.06 update 1 (build 61)
+Assembler:       Armasm.exe V5.06 update 1 (build 61)
+Linker/Locator:  ArmLink.exe V5.06 update 1 (build 61)
+Library Manager: ArmAr.exe V5.06 update 1 (build 61)
+Hex Converter:   FromElf.exe V5.06 update 1 (build 61)
+CPU DLL:         SARMCM3.DLL V5.18
+Dialog DLL:      DCM.DLL V1.13.6.0
+Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
+Dialog DLL:      TCM.DLL V1.14.8.0
+ 
+<h2>Project:</h2>
+E:\stm32-relevent\cube\boat\MDK-ARM\boat.uvprojx
+Project File Date:  08/16/2021
+
+<h2>Output:</h2>
+*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'G:\keil\ARM\ARMCC\Bin'
+Rebuild target 'boat'
+assembling startup_stm32h750xx.s...
+compiling hc06.c...
+../Inc/move.h(6): warning:  #1295-D: Deprecated declaration dir_init - give arg types
+  void dir_init();
+../Inc/move.h(7): warning:  #1295-D: Deprecated declaration go_pwm - give arg types
+  void go_pwm();
+../Inc/move.h(8): warning:  #1295-D: Deprecated declaration straight - give arg types
+  void straight();
+../Inc/move.h(9): warning:  #1295-D: Deprecated declaration pause - give arg types
+  void pause();
+../Inc/move.h(10): warning:  #1295-D: Deprecated declaration left - give arg types
+  void left();
+../Inc/move.h(11): warning:  #1295-D: Deprecated declaration right - give arg types
+  void right();
+../Inc/move.h(12): warning:  #1295-D: Deprecated declaration avoid - give arg types
+  void avoid();
+../Inc/move.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Inc/hc06.h(9): warning:  #1-D: last line of file ends without a newline
+  #endif
+hc06.c: 9 warnings, 0 errors
+compiling move.c...
+../Inc/move.h(6): warning:  #1295-D: Deprecated declaration dir_init - give arg types
+  void dir_init();
+../Inc/move.h(7): warning:  #1295-D: Deprecated declaration go_pwm - give arg types
+  void go_pwm();
+../Inc/move.h(8): warning:  #1295-D: Deprecated declaration straight - give arg types
+  void straight();
+../Inc/move.h(9): warning:  #1295-D: Deprecated declaration pause - give arg types
+  void pause();
+../Inc/move.h(10): warning:  #1295-D: Deprecated declaration left - give arg types
+  void left();
+../Inc/move.h(11): warning:  #1295-D: Deprecated declaration right - give arg types
+  void right();
+../Inc/move.h(12): warning:  #1295-D: Deprecated declaration avoid - give arg types
+  void avoid();
+../Inc/move.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+move.c(11): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+PIOD,m_dir[2*ch],dir);
+move.c(12): warning:  #188-D: enumerated type mixed with another type
+  	HAL_GPIO_WritePin(
+PIOD,m_dir[2*ch+1],!dir);
+move.c(18): warning:  #188-D: enumerated type mixed with another type
+  		{	HAL_GPIO_WritePin(
+PIOD,m_dir[2*i],v_dir[i]);
+move.c(19): warning:  #188-D: enumerated type mixed with another type
+  			HAL_GPIO_WritePin(
+PIOD,m_dir[2*i+1],!v_dir[i]);
+move.c(61): warning:  #1-D: last line of file ends without a newline
+  	
+move.c: 13 warnings, 0 errors
+compiling main.c...
+../Inc/move.h(6): warning:  #1295-D: Deprecated declaration dir_init - give arg types
+  void dir_init();
+../Inc/move.h(7): warning:  #1295-D: Deprecated declaration go_pwm - give arg types
+  void go_pwm();
+../Inc/move.h(8): warning:  #1295-D: Deprecated declaration straight - give arg types
+  void straight();
+../Inc/move.h(9): warning:  #1295-D: Deprecated declaration pause - give arg types
+  void pause();
+../Inc/move.h(10): warning:  #1295-D: Deprecated declaration left - give arg types
+  void left();
+../Inc/move.h(11): warning:  #1295-D: Deprecated declaration right - give arg types
+  void right();
+../Inc/move.h(12): warning:  #1295-D: Deprecated declaration avoid - give arg types
+  void avoid();
+../Inc/move.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Src/main.c: 8 warnings, 0 errors
+compiling gpio.c...
+compiling usart.c...
+compiling tim.c...
+compiling stm32h7xx_it.c...
+../Inc/move.h(6): warning:  #1295-D: Deprecated declaration dir_init - give arg types
+  void dir_init();
+../Inc/move.h(7): warning:  #1295-D: Deprecated declaration go_pwm - give arg types
+  void go_pwm();
+../Inc/move.h(8): warning:  #1295-D: Deprecated declaration straight - give arg types
+  void straight();
+../Inc/move.h(9): warning:  #1295-D: Deprecated declaration pause - give arg types
+  void pause();
+../Inc/move.h(10): warning:  #1295-D: Deprecated declaration left - give arg types
+  void left();
+../Inc/move.h(11): warning:  #1295-D: Deprecated declaration right - give arg types
+  void right();
+../Inc/move.h(12): warning:  #1295-D: Deprecated declaration avoid - give arg types
+  void avoid();
+../Inc/move.h(15): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Src/stm32h7xx_it.c(211): warning:  #177-D: variable "b" was declared but never referenced
+  	uint8_t b[]="OK \n";
+../Src/stm32h7xx_it.c: 9 warnings, 0 errors
+compiling stm32h7xx_hal_msp.c...
+compiling stm32h7xx_hal_cortex.c...
+compiling stm32h7xx_hal_tim.c...
+compiling stm32h7xx_hal_tim_ex.c...
+compiling stm32h7xx_hal_uart.c...
+compiling stm32h7xx_hal_uart_ex.c...
+compiling stm32h7xx_hal_rcc.c...
+compiling stm32h7xx_hal_rcc_ex.c...
+compiling stm32h7xx_hal_flash.c...
+compiling stm32h7xx_hal_flash_ex.c...
+compiling stm32h7xx_hal_gpio.c...
+compiling stm32h7xx_hal_hsem.c...
+compiling stm32h7xx_hal_dma_ex.c...
+compiling stm32h7xx_hal_dma.c...
+compiling stm32h7xx_hal_mdma.c...
+compiling stm32h7xx_hal_pwr.c...
+compiling stm32h7xx_hal_pwr_ex.c...
+compiling stm32h7xx_hal.c...
+compiling stm32h7xx_hal_i2c.c...
+compiling stm32h7xx_hal_i2c_ex.c...
+compiling stm32h7xx_hal_exti.c...
+compiling system_stm32h7xx.c...
+linking...
+Program Size: Code=23446 RO-data=714 RW-data=36 ZI-data=1292  
+FromELF: creating hex file...
+"boat\boat.axf" - 0 Error(s), 39 Warning(s).
+
+<h2>Software Packages used:</h2>
+
+Package Vendor: ARM
+                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
+                ARM.CMSIS.4.5.0
+                CMSIS (Cortex Microcontroller Software Interface Standard)
+   * Component: CORE Version: 4.3.0
+
+Package Vendor: Keil
+                https://www.keil.com/pack/Keil.STM32H7xx_DFP.2.3.1.pack
+                Keil.STM32H7xx_DFP.2.3.1
+                STMicroelectronics STM32H7 Series Device Support and Examples
+
+<h2>Collection of Component include folders:</h2>
+  .\RTE\_boat
+  G:\keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
+  G:\keil\ARM\PACK\Keil\STM32H7xx_DFP\2.3.1\Drivers\CMSIS\Device\ST\STM32H7xx\Include
+
+<h2>Collection of Component Files used:</h2>
+
+   * Component: ARM::CMSIS:CORE:4.3.0
+Build Time Elapsed:  00:10:58
+</pre>
+</body>
+</html>
