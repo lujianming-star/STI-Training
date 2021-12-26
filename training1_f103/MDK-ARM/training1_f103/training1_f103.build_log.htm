@@ -28,15 +28,19 @@ Project File Date:  12/25/2021
 *** Using Compiler 'V5.06 update 1 (build 61)', folder: 'G:\keil\ARM\ARMCC\Bin'
 Rebuild target 'training1_f103'
 assembling startup_stm32f103x6.s...
-compiling gpio.c...
 compiling main.c...
 ../Inc/hmi.h(9): warning:  #1-D: last line of file ends without a newline
   #endif
-../Src/main.c(60): warning:  #1295-D: Deprecated declaration read_cnt - give arg types
+../Src/main.c(62): warning:  #1295-D: Deprecated declaration read_cnt - give arg types
   uint32_t read_cnt();
-../Src/main.c(115): warning:  #111-D: statement is unreachable
+../Src/main.c(118): warning:  #111-D: statement is unreachable
   	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
-../Src/main.c: 3 warnings, 0 errors
+../Src/main.c(130): warning:  #223-D: function "sprintf" declared implicitly
+  		sprintf((char *)buf,"n0.val=%d",pwm); //强??????转化，转化为?址?
+../Src/main.c(131): warning:  #167-D: argument of type "char *" is incompatible with parameter of type "uint8_t *"
+  		HMISends((char *)buf); //发??Ri???莞?page0页?娴?t3?谋究丶?
+../Src/main.c: 5 warnings, 0 errors
+compiling gpio.c...
 compiling tim.c...
 compiling usart.c...
 compiling stm32f1xx_it.c...
@@ -63,9 +67,9 @@ hmi.c(34): warning:  #1-D: last line of file ends without a newline
   }
 hmi.c: 2 warnings, 0 errors
 linking...
-Program Size: Code=6000 RO-data=292 RW-data=16 ZI-data=1240  
+Program Size: Code=6188 RO-data=292 RW-data=36 ZI-data=1236  
 FromELF: creating hex file...
-"training1_f103\training1_f103.axf" - 0 Error(s), 5 Warning(s).
+"training1_f103\training1_f103.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -88,7 +92,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:00:59
+Build Time Elapsed:  00:01:07
 </pre>
 </body>
 </html>

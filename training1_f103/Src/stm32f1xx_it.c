@@ -42,7 +42,7 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN PV */
-
+uint8_t Res;       //将接受的数据储存到该变量中
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -207,11 +207,22 @@ void USART2_IRQHandler(void)
   /* USER CODE END USART2_IRQn 0 */
   HAL_UART_IRQHandler(&huart2);
   /* USER CODE BEGIN USART2_IRQn 1 */
-
+	if(HAL_UART_GetState(&huart2)!=RESET)   //判断串口状态
+	{	
+		HAL_UART_Receive_IT(&huart2,&Res,1);//从串口接受一个字节数据		
+	}
   /* USER CODE END USART2_IRQn 1 */
 }
 
 /* USER CODE BEGIN 1 */
-
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{ 
+	if(huart->Instance==USART2)
+	{
+		extern uint16_t pwm;
+		pwm = Res;
+	}
+	
+}
 /* USER CODE END 1 */
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

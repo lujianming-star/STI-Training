@@ -50,7 +50,9 @@
 uint32_t cnt_temp;   //计数中间量
 float pulse;					//脉冲数
 float rounds;					//圈数
-uint8_t pwm;
+uint16_t pwm;
+unsigned char buf[64];
+uint8_t Rx_dat;      //接受到的数据
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
@@ -104,6 +106,7 @@ int main(void)
   MX_TIM2_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
+	HAL_UART_Receive_IT(&huart2,&Rx_dat,1);   //在main中第一次调用中断接收函数
 	uint32_t read_cnt();
 {
 	uint32_t encoder_cnt;
@@ -114,6 +117,7 @@ int main(void)
 }
 	HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_1);
   HAL_TIM_PWM_Start(&htim1, TIM_CHANNEL_2);
+	pwm = 100;
   /* USER CODE END 2 */
 
   /* Infinite loop */
@@ -121,13 +125,22 @@ int main(void)
   while (1)
   {
     /* USER CODE END WHILE */
-
+	
     /* USER CODE BEGIN 3 */
-	TIM1->CCR1 = pwm;     
-	TIM1->CCR2 = pwm;     //给两个电机pwm信号
-	cnt_temp = read_cnt();   //读取脉冲计数值
-	pulse = cnt_temp/4.0f;		//第三种计数模式，4分频，得到实际脉冲数
-	HAL_Delay(1000);
+		sprintf((char *)buf,"n0.val=%d",pwm); //强制类型转化，转化为字符串
+		HMISends((char *)buf); //发送Ri的数据给page0页面的t3文本控件
+		HMISendb(0xff);//结束符
+		
+		//printf("page1.n0.val=%d\xff\xff\xff",pwm);
+		//printf("page1.n0.val=666\xff\xff\xff");
+
+		//TIM1->CCR1 = pwm;     
+		//TIM1->CCR2 = pwm;     //给两个电机pwm信号
+		cnt_temp = read_cnt();   //读取脉冲计数值
+		pulse = cnt_temp/4.0f;		//第三种计数模式，4分频，得到实际脉冲数
+		//电机后轴1圈448个脉冲，减速比为1：43.8，所以一圈脉冲数为43.8*448=19622
+		rounds = cnt_temp/pulse/19622.0f;   //计算出圈数
+		HAL_Delay(1000);
 	
   }
   /* USER CODE END 3 */
