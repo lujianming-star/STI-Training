@@ -48,12 +48,22 @@
 
 /* USER CODE BEGIN PV */
 uint16_t ADC_value;     //adc读值
+uint16_t result;
 /* USER CODE END PV */
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-
+int ADC_get()
+{	
+	HAL_ADC_Start(&hadc1);	//启动ADC转换
+	HAL_ADC_PollForConversion(&hadc1, 50);	//等待转换完成，50ms为最大等待时间
+	if(HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
+	{
+		ADC_value = HAL_ADC_GetValue(&hadc1);		//获取AD值
+	}
+	return ADC_value;
+}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -103,16 +113,46 @@ int main(void)
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
-		HAL_ADC_Start(&hadc1);	//启动ADC转换
+		
+		result = ADC_get();
+		/*HAL_ADC_Start(&hadc1);	//启动ADC转换
 		HAL_ADC_PollForConversion(&hadc1, 50);	//等待转换完成，50ms为最大等待时间
 		if(HAL_IS_BIT_SET(HAL_ADC_GetState(&hadc1), HAL_ADC_STATE_REG_EOC))
 		{
 			ADC_value = HAL_ADC_GetValue(&hadc1);		//获取AD值
+			//HAL_GPIO_TogglePin(GPIOG, GPIO_PIN_2);
+			//HAL_Delay(ADC_value);
+			if(ADC_value > 3000 && ADC_value <= 3250)	
+			{
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_2,1);
+				HAL_Delay(1000);
+			}
+			else if (ADC_value > 3250 && ADC_value <= 3500)
+			{
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_2,1);
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_3,1);
+				//HAL_Delay(1000);
+			}
+			else if (ADC_value > 3500 && ADC_value <= 3750)
+			{
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_2,1);
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_3,1);
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_4,1);
+				//HAL_Delay(1000);
+			}
+			else if (ADC_value > 3750 && ADC_value <= 4000)
+			{
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_2,1);
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_3,1);
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_4,1);
+				HAL_GPIO_WritePin(GPIOG, GPIO_PIN_5,1);
+				//HAL_Delay(1000);
+			}
 			printf("ADC1 Reading : %d \r\n",ADC_value);
 			printf("PB0 True Voltage value : %.4f \r\n",ADC_value*3.3f/4096);
 			printf("测试\r\n");
 		}
-		HAL_Delay(1000);
+		//HAL_Delay(1000);*/
 		
   }
   /* USER CODE END 3 */
