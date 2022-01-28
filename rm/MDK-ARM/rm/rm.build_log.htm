@@ -5,11 +5,11 @@
 <h2>Tool Versions:</h2>
 IDE-Version: ¦ÌVision V5.25.3.0
 Copyright (C) 2018 ARM Ltd and ARM Germany GmbH. All rights reserved.
-License Information: 123 123, 123, LIC=3UUKP-MV93B-EZZWX-HWEMF-A7NG6-02RQE
+License Information: 123 2495231672@qq.com, 123, LIC=HF8SB-2WPT0-SEIH0-BM8T6-5MI3S-DI9YK
  
 Tool Versions:
 Toolchain:       MDK-ARM Professional  Version: 5.18
-Toolchain Path:  G:\keil\ARM\ARMCC\Bin
+Toolchain Path:  D:\keil5\ARM\ARMCC\Bin
 C Compiler:      Armcc.exe V5.06 update 1 (build 61)
 Assembler:       Armasm.exe V5.06 update 1 (build 61)
 Linker/Locator:  ArmLink.exe V5.06 update 1 (build 61)
@@ -21,51 +21,87 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V2.0.18.0
 Dialog DLL:      TCM.DLL V1.14.8.0
  
 <h2>Project:</h2>
-E:\stm32-relevent\cube\rm\MDK-ARM\rm.uvprojx
-Project File Date:  01/14/2022
+D:\stm32-relevent\cube\rm\MDK-ARM\rm.uvprojx
+Project File Date:  01/27/2022
 
 <h2>Output:</h2>
-*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'G:\keil\ARM\ARMCC\Bin'
+*** Using Compiler 'V5.06 update 1 (build 61)', folder: 'D:\keil5\ARM\ARMCC\Bin'
 Rebuild target 'rm'
 assembling startup_stm32f427xx.s...
-compiling gpio.c...
+compiling stm32f4xx_it.c...
+compiling stm32f4xx_hal_tim_ex.c...
+compiling stm32f4xx_hal_tim.c...
+compiling stm32f4xx_hal_msp.c...
+compiling tim.c...
 compiling main.c...
-../Src/main.c(103): warning:  #188-D: enumerated type mixed with another type
+../Inc/grip.h(4): warning:  #1295-D: Deprecated declaration init_pos - give arg types
+  double init_pos();
+../Inc/grip.h(5): warning:  #1295-D: Deprecated declaration get - give arg types
+  void get();   //??È¡????
+../Inc/grip.h(6): warning:  #1295-D: Deprecated declaration putDown - give arg types
+  void putDown(); //????????
+../Inc/grip.h(7): warning:  #1295-D: Deprecated declaration down - give arg types
+  double down();		//??Ðµ???Â½?
+../Inc/grip.h(8): warning:  #1295-D: Deprecated declaration up - give arg types
+  double up();
+../Inc/grip.h(9): warning:  #1295-D: Deprecated declaration grip - give arg types
+  double grip();			//??×¡?ï¿?
+../Inc/grip.h(10): warning:  #1295-D: Deprecated declaration loose - give arg types
+  double loose();			//?É¿??ï¿?
+../Inc/grip.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+../Src/main.c(73): warning:  #188-D: enumerated type mixed with another type
   	HAL_GPIO_WritePin(
 PIOG,
 PIO_PIN_1,1);
-../Src/main.c: 1 warning, 0 errors
-compiling tim.c...
-compiling stm32f4xx_it.c...
-compiling stm32f4xx_hal_msp.c...
-compiling stm32f4xx_hal_tim.c...
-compiling stm32f4xx_hal_tim_ex.c...
-compiling stm32f4xx_hal_rcc.c...
-compiling stm32f4xx_hal_rcc_ex.c...
-compiling stm32f4xx_hal_flash.c...
-compiling stm32f4xx_hal_flash_ex.c...
+../Src/main.c: 9 warnings, 0 errors
+compiling gpio.c...
 compiling stm32f4xx_hal_flash_ramfunc.c...
 compiling stm32f4xx_hal_gpio.c...
+compiling stm32f4xx_hal_rcc.c...
+compiling stm32f4xx_hal_rcc_ex.c...
 compiling stm32f4xx_hal_dma_ex.c...
-compiling stm32f4xx_hal_dma.c...
-compiling stm32f4xx_hal_pwr.c...
-compiling stm32f4xx_hal_pwr_ex.c...
-compiling stm32f4xx_hal_cortex.c...
-compiling stm32f4xx_hal.c...
-compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal_flash_ex.c...
+compiling stm32f4xx_hal_flash.c...
 compiling system_stm32f4xx.c...
+compiling stm32f4xx_hal_cortex.c...
+compiling stm32f4xx_hal_exti.c...
+compiling stm32f4xx_hal_dma.c...
+compiling stm32f4xx_hal_pwr_ex.c...
+compiling stm32f4xx_hal_pwr.c...
+compiling stm32f4xx_hal.c...
+compiling grip.c...
+../Inc/grip.h(4): warning:  #1295-D: Deprecated declaration init_pos - give arg types
+  double init_pos();
+../Inc/grip.h(5): warning:  #1295-D: Deprecated declaration get - give arg types
+  void get();   //??È¡????
+../Inc/grip.h(6): warning:  #1295-D: Deprecated declaration putDown - give arg types
+  void putDown(); //????????
+../Inc/grip.h(7): warning:  #1295-D: Deprecated declaration down - give arg types
+  double down();		//??Ðµ???Â½?
+../Inc/grip.h(8): warning:  #1295-D: Deprecated declaration up - give arg types
+  double up();
+../Inc/grip.h(9): warning:  #1295-D: Deprecated declaration grip - give arg types
+  double grip();			//??×¡?ï¿?
+../Inc/grip.h(10): warning:  #1295-D: Deprecated declaration loose - give arg types
+  double loose();			//?É¿??ï¿?
+../Inc/grip.h(18): warning:  #1-D: last line of file ends without a newline
+  #endif
+grip.c(147): warning:  #1-D: last line of file ends without a newline
+  }
+grip.c: 9 warnings, 0 errors
 linking...
-Program Size: Code=5740 RO-data=476 RW-data=16 ZI-data=1088  
+Program Size: Code=5764 RO-data=476 RW-data=16 ZI-data=1088  
 FromELF: creating hex file...
-"rm\rm.axf" - 0 Error(s), 1 Warning(s).
+"rm\rm.axf" - 0 Error(s), 18 Warning(s).
 
 <h2>Software Packages used:</h2>
 
 Package Vendor: ARM
-                http://www.keil.com/pack/ARM.CMSIS.4.5.0.pack
-                ARM.CMSIS.4.5.0
-                CMSIS (Cortex Microcontroller Software Interface Standard)
-   * Component: CORE Version: 4.3.0
+                http://www.keil.com/pack/ARM.CMSIS.5.8.0.pack
+                ARM.CMSIS.5.8.0
+                CMSIS (Common Microcontroller Software Interface Standard)
+   * Component: CORE Version: 5.5.0
 
 Package Vendor: Keil
                 http://www.keil.com/pack/Keil.STM32F4xx_DFP.2.15.0.pack
@@ -74,13 +110,13 @@ Package Vendor: Keil
 
 <h2>Collection of Component include folders:</h2>
   .\RTE\_rm
-  G:\keil\ARM\PACK\ARM\CMSIS\4.5.0\CMSIS\Include
-  G:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
+  D:\keil\ARM\PACK\ARM\CMSIS\5.8.0\CMSIS\Core\Include
+  D:\keil\ARM\PACK\Keil\STM32F4xx_DFP\2.15.0\Drivers\CMSIS\Device\ST\STM32F4xx\Include
 
 <h2>Collection of Component Files used:</h2>
 
-   * Component: ARM::CMSIS:CORE:4.3.0
-Build Time Elapsed:  00:02:18
+   * Component: ARM::CMSIS:CORE:5.5.0
+Build Time Elapsed:  00:00:19
 </pre>
 </body>
 </html>

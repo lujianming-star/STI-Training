@@ -1,7 +1,7 @@
 [PreviousGenFiles]
-HeaderPath=E:/stm32-relevent/cube/rm/Inc
+HeaderPath=D:/stm32-relevent/cube/rm/Inc
 HeaderFiles=gpio.h;stm32f4xx_it.h;stm32f4xx_hal_conf.h;main.h;tim.h;
-SourcePath=E:/stm32-relevent/cube/rm/Src
+SourcePath=D:/stm32-relevent/cube/rm/Src
 SourceFiles=gpio.c;stm32f4xx_it.c;stm32f4xx_hal_msp.c;main.c;tim.c;
 
 [PreviousLibFiles]

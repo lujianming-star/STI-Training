@@ -22,6 +22,7 @@
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
+#include "grip.h"
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
@@ -53,39 +54,8 @@
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
 /* USER CODE BEGIN PFP */
-void rm_servo(double angle)
-{
-		//大疆板子对应APB1外设，时钟频率对应36Mhz
-		//GM6020占空比为5%到10%，最小值为3599*5%=179.95 最大值为3599*10%=359.9
-		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
-		arr = (179.0/360)*angle + 180;
-		TIM2->CCR1 = arr;
-		HAL_Delay(100);
 
-}
-void servo1(double angle)
-{
-		//大疆板子对应APB1外设，时钟频率对应36Mhz
-		//三线舵机占空比为2.5%到12.5%，最小值为3599*2.5%=89.975 最大值为3599*12.5%=449.875
-		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
-		arr = angle + 90;
-		TIM2->CCR2 = arr;
-		HAL_Delay(100);
 
-}
-void servo2(double angle)
-{
-		//大疆板子对应APB1外设，时钟频率对应36Mhz
-		//三线舵机占空比为2.5%到12.5%，最小值为3599*2.5%=89.975 最大值为3599*12.5%=449.875
-		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
-		arr = angle + 90;
-		TIM2->CCR3 = arr;
-		HAL_Delay(100);
-
-}
 /* USER CODE END PFP */
 
 /* Private user code ---------------------------------------------------------*/
@@ -125,9 +95,10 @@ int main(void)
   MX_GPIO_Init();
   MX_TIM2_Init();
   /* USER CODE BEGIN 2 */
-	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_1);				  
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_2);
 	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_3);
+	HAL_TIM_PWM_Start(&htim2, TIM_CHANNEL_4);
   /* USER CODE END 2 */
 
   /* Infinite loop */
