@@ -22,10 +22,11 @@
 #include "main.h"
 #include "tim.h"
 #include "gpio.h"
-#include "grip.h"
+
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include "grip.h"
 
 /* USER CODE END Includes */
 
@@ -71,7 +72,7 @@ int main(void)
 {
   /* USER CODE BEGIN 1 */
 	HAL_GPIO_WritePin(GPIOG,GPIO_PIN_1,1);
-	
+
   /* USER CODE END 1 */
   
 

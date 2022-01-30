@@ -521,6 +521,16 @@
               <FileType>1</FileType>
               <FilePath>.\grip.c</FilePath>
             </File>
+            <File>
+              <FileName>caculate.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\caculate.h</FilePath>
+            </File>
+            <File>
+              <FileName>caculate.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\caculate.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
