@@ -11,34 +11,34 @@ void rm_servo(double angle)
 		HAL_Delay(100);
 
 }
-void servo1(double angle)
+void servo1(float angle)
 {
 		//大疆板子对应APB1外设，时钟频率对应36Mhz
 		//三线舵机占空比为2.5%到12.5%，最小值为3599*2.5%=89.975 最大值为3599*12.5%=449.875
 		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
+		float arr ;
 		arr = angle + 90;
 		TIM2->CCR1 = arr;
 		HAL_Delay(100);
 
 }
-void servo2(double angle)
+void servo2(float angle)
 {
 		//大疆板子对应APB1外设，时钟频率对应36Mhz
 		//三线舵机占空比为2.5%到12.5%，最小值为3599*2.5%=89.975 最大值为3599*12.5%=449.875
 		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
+		float arr ;
 		arr = angle + 90;
 		TIM2->CCR2 = arr;
 		HAL_Delay(100);
 
 }
-void servo3(double angle)
+void servo3(float angle)
 {
 		//大疆板子对应APB1外设，时钟频率对应36Mhz
 		//三线舵机占空比为2.5%到12.5%，最小值为3599*2.5%=89.975 最大值为3599*12.5%=449.875
 		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
+		float arr ;
 		arr = angle + 90;
 		TIM2->CCR3 = arr;
 		HAL_Delay(100);
@@ -49,7 +49,7 @@ void clip(double angle)
 		//大疆板子对应APB1外设，时钟频率对应36Mhz
 		//三线舵机占空比为2.5%到12.5%，最小值为3599*2.5%=89.975 最大值为3599*12.5%=449.875
 		//对应角度 ccr = 0.5*angle + 179
-		double arr ;
+		float arr ;
 		arr = angle + 90;
 		TIM2->CCR4 = arr;
 		HAL_Delay(100);
