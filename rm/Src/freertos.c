@@ -33,7 +33,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 
-MecArmAttiSturcture  tx, rx;		//接收的结构体变量和发送的变量
+
 /* USER CODE END PTD */
 
 /* Private define ------------------------------------------------------------*/
@@ -48,10 +48,11 @@ MecArmAttiSturcture  tx, rx;		//接收的结构体变量和发送的变量
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-
+float servoAngle[4] = {90, 0, 0, 0};
 /* USER CODE END Variables */
 osThreadId ServoTaskHandle;
 osThreadId TopTaskHandle;
+osThreadId caCcommuHandle;
 osMessageQId myQueue01Handle;
 
 /* Private function prototypes -----------------------------------------------*/
@@ -61,6 +62,7 @@ osMessageQId myQueue01Handle;
 
 void Servo_Task(void const * argument);
 void Top_Task(void const * argument);
+void can_Commu(void const * argument);
 
 void MX_FREERTOS_Init(void); /* (MISRA C 2004 rule 8.1) */
 
@@ -104,7 +106,7 @@ void MX_FREERTOS_Init(void) {
 
   /* Create the queue(s) */
   /* definition and creation of myQueue01 */
-  osMessageQDef(myQueue01, 16, uint64_t);
+  osMessageQDef(myQueue01, 16, uint8_t);
   myQueue01Handle = osMessageCreate(osMessageQ(myQueue01), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
@@ -119,6 +121,10 @@ void MX_FREERTOS_Init(void) {
   /* definition and creation of TopTask */
   osThreadDef(TopTask, Top_Task, osPriorityNormal, 0, 128);
   TopTaskHandle = osThreadCreate(osThread(TopTask), NULL);
+
+  /* definition and creation of caCcommu */
+  osThreadDef(caCcommu, can_Commu, osPriorityIdle, 0, 128);
+  caCcommuHandle = osThreadCreate(osThread(caCcommu), NULL);
 
   /* USER CODE BEGIN RTOS_THREADS */
   /* add threads, ... */
@@ -138,37 +144,41 @@ void Servo_Task(void const * argument)
     
     
     
+    
 
   /* USER CODE BEGIN Servo_Task */
+	MecArmAttiSturcture  rx;				//接收结构体变量要在接收函数里定义
 	
-	float servoAngle[3] = {90, 0, 0};
   /* Infinite loop */
   for(;;)
   {
-			if(xQueueReceive(myQueue01Handle, &rx, 1000))
-			{
-				printf("successfully receive : %f", rx.pointX);
-				if(attitudeGetAngle(rx, servoAngle) != 1)
-				{
-					vTaskDelay(5);
-					servo1(servoAngle[0]);
-					vTaskDelay(5);
-					servo2(servoAngle[1]);
-					vTaskDelay(5);
-					servo3(servoAngle[2]);
-					vTaskDelay(5);
-					for(int i = 0; i < 3; i++)
-					{
-						printf(" %f ",servoAngle[i]);
-						osDelay(50);
-					}
-				}
-
+//			if(xQueueReceive(myQueue01Handle, &rx, 1000))
+//			{
+//				printf("successfully receive : %d \n", rx.pointX);
+//				if(attitudeGetAngle(rx, servoAngle) != 1)
+//				{
+//					vTaskDelay(5);
+//					servo1(servoAngle[0]);
+//					vTaskDelay(5);
+//					servo2(servoAngle[1]);
+//					vTaskDelay(5);
+//					servo3(servoAngle[2]);
+//					vTaskDelay(5);
+//					for(int i = 0; i < 3; i++)
+//					{
+//						printf(" angle = %f \n ",servoAngle[i]);
+//						osDelay(50);
+//					}
+//				}
+//				rm_servo(-15,v);
+//				vTaskDelay(1500);
+//				rm_servo(350,v);
+//				vTaskDelay(1500);
 			}
-    osDelay(1000);
+    //osDelay(1000);
   }
   /* USER CODE END Servo_Task */
-}
+
 
 /* USER CODE BEGIN Header_Top_Task */
 /**
@@ -180,11 +190,13 @@ void Servo_Task(void const * argument)
 void Top_Task(void const * argument)
 {
   /* USER CODE BEGIN Top_Task */
-	tx.pointX = 0.01;
-	tx.pointY = 0.01;
-	tx.handBiasAngle = 5;
-	tx.mode = 1;
-	tx.panAngle = 5;
+	MecArmAttiSturcture  tx;		//接收的结构体变量和发送的变量
+	tx.pointX = 0.14;
+	tx.pointY = 0.095;
+	//tx.handBiasAngle = 0;
+	//tx.mode = 1;
+	//tx.panAngle = 205;
+	
   /* Infinite loop */
 	
   for(;;)
@@ -192,11 +204,29 @@ void Top_Task(void const * argument)
 		xQueueSendToBack(myQueue01Handle, &tx, 0);
 //		if(xQueueSendToBack(myQueue01Handle, &tx, 0))
 //		{
-//			printf(tx.pointX);
+//			printf("successfully send : %d", tx.mode);
 //		}
-    osDelay(1);
+    osDelay(100);
   }
   /* USER CODE END Top_Task */
+}
+
+/* USER CODE BEGIN Header_can_Commu */
+/**
+* @brief Function implementing the caCcommu thread.
+* @param argument: Not used
+* @retval None
+*/
+/* USER CODE END Header_can_Commu */
+void can_Commu(void const * argument)
+{
+  /* USER CODE BEGIN can_Commu */
+  /* Infinite loop */
+  for(;;)
+  {
+    osDelay(1);
+  }
+  /* USER CODE END can_Commu */
 }
 
 /* Private application code --------------------------------------------------*/

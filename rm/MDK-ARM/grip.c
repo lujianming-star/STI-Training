@@ -1,13 +1,16 @@
 #include "grip.h"
 #include "tim.h"
-void rm_servo(double angle)
+#include "caculate.h"
+#include "motor_pid.h"
+void rm_servo(double angle, float target_speed)
 {
 		//大疆板子对应APB1外设，时钟频率对应36Mhz
 		//GM6020占空比为5%到10%，最小值为3599*5%=179.95 最大值为3599*10%=359.9
 		//对应角度 ccr = 0.5*angle + 179
 		double arr ;
 		arr = (179.0/360)*angle + 180;
-		TIM2->CCR1 = arr;
+		TIM8->CCR1 = arr;
+		rotor_pid_task(target_speed);
 		HAL_Delay(100);
 
 }
@@ -56,92 +59,28 @@ void clip(double angle)
 
 }
 
-//初始姿态
-double init_pos()
+//机械臂的不同姿态
+void init_pos()
 {
-	servo1(27);
-	servo2(120);
-	servo3(60);
-	clip(100);   //需修改
-	return 0;
+//	attitudeGetAngle_get(const MecArmAttiSturcture S, float *ptheta);
+//	servo1(servoAngle[0]);
+//	servo2(servoAngle[1]);
+//	servo3(servoAngle[2]);
+//	rm_servo(servoAngle[3], target_speed);
 }
-
-//下降
-double down()
+void move_get()
 {
-	for(double ag1 = 27; ag1 < 33; ag1++)
-	{
-		servo1(ag1);
-		HAL_Delay(10);
-	}
-	for(double ag2 = 120; ag2 < 122; ag2++)
-	{
-		servo2(ag2);
-		HAL_Delay(10);
-	}
-	for(double ag3 = 60; ag3 < 66; ag3++)
-	{
-		servo3(ag3);
-		HAL_Delay(10);
-	}
-	return 0;
+//	attitudeGetAngle_get(const MecArmAttiSturcture S, float *ptheta);
+//	servo1(servoAngle[0]);
+//	servo2(servoAngle[1]);
+//	servo3(servoAngle[2]);
+//	rm_servo(servoAngle[3], target_speed);
 }
-
-//上升
-double up()
+void move_put()
 {
-		for(double ag1 = 33; ag1 > 27; ag1--)
-	{
-		servo1(ag1);
-		HAL_Delay(10);
-	}
-	for(double ag2 = 122; ag2 > 120; ag2--)
-	{
-		servo2(ag2);
-		HAL_Delay(10);
-	}
-	for(double ag3 = 66; ag3 > 60; ag3--)
-	{
-		servo3(ag3);
-		HAL_Delay(10);
-	}
-	return 0;
-}
-
-//夹子抓取
-double grip()
-{
-	for(double ag4 = 100; ag4>50; ag4--)
-	{
-		clip(ag4);		//需修改
-		HAL_Delay(10);
-	}
-	return 0;
-}
-
-//夹子松开
-double loose()
-{
-	for(double ag4 = 50; ag4 < 100; ag4++)
-	{
-		clip(ag4);		//需修改
-		HAL_Delay(10);
-	}
-	return 0;
-}
-
-//抓取物体的整个动作
-void get()
-{
-	down();
-	grip();
-	up();
-}
-
-//放下物体的整个动作
-void putDown()
-{
-	down();
-	loose();
-	up();
+//	attitudeGetAngle_put(const MecArmAttiSturcture S, float *ptheta);
+//	servo1(servoAngle[0]);
+//	servo2(servoAngle[1]);
+//	servo3(servoAngle[2]);
+//	rm_servo(servoAngle[3], target_speed);
 }

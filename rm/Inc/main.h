@@ -58,7 +58,10 @@ void Error_Handler(void);
 /* USER CODE END EFP */
 
 /* Private defines -----------------------------------------------------------*/
+#define rotor_Pin GPIO_PIN_5
+#define rotor_GPIO_Port GPIOI
 /* USER CODE BEGIN Private defines */
+#define LIMIT_MIN_MAX(x,min,max) (x) = (((x)<=(min))?(min):(((x)>=(max))?(max):(x)))
 
 /* USER CODE END Private defines */
 

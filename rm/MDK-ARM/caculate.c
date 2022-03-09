@@ -1,71 +1,47 @@
 #include "caculate.h"
 #include "math.h"
-/*
-①得到空间点坐标x , y, z
-②求θ2，β， cao
-③判断θ2正负
-④求θ1
-⑤求θ3
-⑥弧度变角度
-*/
-//double angle[3];
-//double caculate(double x, double y, double z)
-//{
-//	double L1, L2;
-//	double xita[3], beta, cao;
-//	xita[1] = acos((x*x + y*y - L1*L1 - L2*L2)/(-2*L1*L2));
-//	beta = atan2(y, x);
-//	cao = acos((x*x + y*y + L1*L1 - L2*L2)/(2*L1*sqrt(x*x + y*y)));
-//	xita[0] = xita[1] > 0 ? (beta - cao) : (beta + cao) ;
-//	xita[2] = - xita[0] - xita[1];
-//	
-//	for(int i = 0; i < 3; i++)
-//	{
-//		angle[i] = xita[i]*180/pi;
-//	}
-//	return 0;
-//}
+#define pi 3.1415
 
-uint8_t attitudeGetAngle(const MecArmAttiSturcture S, float* pTheta)
+
+
+uint8_t attitudeGetAngle_get(const MecArmAttiSturcture S, float *ptheta)
 {
-    float lp = 0;
-		int L1 = 140, L2 = 110;
-		#define PI 3.14
-		lp = sqrt(S.pointX*S.pointX + S.pointY*S.pointY);
-
-	if(lp >= L1+L2 || lp <= fabs(L1-L2))
+	float L1 = 0.14; //杆长
+	float L2 = 0.11;
+	float L3 = 0.04;
+	float alpha, beta, lp, By, Bz;
+	By=S.pointY-L3; //这里设置γ为-90
+	Bz=S.pointZ;
+	lp=S.pointY*S.pointY+S.pointZ*S.pointZ;
+	if (sqrt(lp)>=L1+L2 || sqrt(lp)<=fabs(L1-L2))
 		return 1;
-
-	if(S.mode == 1)
-	{
-		if(S.pointX < 0.05f)
-			return 1;
-		if(lp < 0.1f)
-			return 1;
-		
-		pTheta[0] = 180.f/PI * (atanf(S.pointY/S.pointX) + acosf((L1*L1 + lp*lp - L2*L2) / (2.f*L1*lp)));
-		pTheta[1] = 180.f/PI * (-acosf(-(L1*L1 + L2*L2 - lp*lp) / (2.f*L1*L2)));
-		pTheta[2] = -pTheta[0] - pTheta[1] + S.handBiasAngle;
-		return 0;
-	}
-	else if(S.mode == 2)
-	{
-		if(S.pointX < 0.f)
-		{
-			pTheta[0] = 180.f + 180.f/PI * (atanf(S.pointY/S.pointX) - acosf((L1*L1 + lp*lp - L2*L2) / (2.f*L1*lp)));
-			pTheta[1] = 180.f/PI * (acosf(-(L1*L1 + L2*L2 - lp*lp) / (2.f*L1*L2)));
-			pTheta[2] = 180.f - pTheta[0] - pTheta[1]+ S.handBiasAngle;
-		}
-		else
-		{
-			pTheta[0] = 180.f/PI * (atanf(S.pointY/S.pointX) - acosf((L1*L1 + lp*lp - L2*L2) / (2.f*L1*lp)));
-			pTheta[1] = 180.f/PI * (acosf(-(L1*L1 + L2*L2 - lp*lp) / (2.f*L1*L2)));
-			pTheta[2] = 180.f - pTheta[0] - pTheta[1]+ S.handBiasAngle;
-		}
-		return 0;
-	}
-	return 1;
+	alpha = atan2(Bz,By);
+	beta = acos((L1*L1+lp-L2*L2)/(2*L1*sqrt(lp))); //这里使用弧度制
+	ptheta[0] = -(pi/2.0-alpha-beta);								//1号舵机角度
+	ptheta[1] = acos((L1*L1+L2*L2-lp)/(2*L1*L2))-pi;	//2号舵机角度
+	ptheta[2] = -ptheta[0] -ptheta[1]- pi/2.0;				//3号舵机角度
+	ptheta[3] = atan2(S.pointX, S.pointY);						//云台舵机角度
+	return 0;
 }
 
+uint8_t attitudeGetAngle_put(const MecArmAttiSturcture S, float *ptheta)
+{
+	float L1 = 0.14; //杆长
+	float L2 = 0.11;
+	float L3 = 0.04;
+	float alpha, beta, lp, By, Bz;
+	By=S.pointY-L3; //这里设置γ为-90
+	Bz=S.pointZ;
+	lp=S.pointY*S.pointY+S.pointZ*S.pointZ;
+	if (sqrt(lp)>=L1+L2 || sqrt(lp)<=fabs(L1-L2))
+		return 1;
+	alpha = atan2(Bz,By);
+	beta = acos((L1*L1+lp-L2*L2)/(2*L1*sqrt(lp))); //这里使用弧度制,注意除法的类型转换，以及转换为角度制
+	ptheta[0] = -(pi/2.0-alpha-beta);
+	ptheta[1] = acos((L1*L1+L2*L2-lp)/(2*L1*L2))-pi;
+	ptheta[2] = -ptheta[0] -ptheta[1]- pi;
+	ptheta[3] = atan2(S.pointX, S.pointY);
+	return 0;
+}
 	
 	
