@@ -1,0 +1,85 @@
+T13C8 000:192.692   SEGGER J-Link V6.70e Log File
+T13C8 000:192.814   DLL Compiled: Apr 17 2020 17:55:05
+T13C8 000:192.830   Logging started @ 2022-01-14 10:50
+T13C8 000:192.846 JLINK_SetWarnOutHandler(...)
+T13C8 000:192.863 - 0.023ms
+T13C8 000:192.880 JLINK_OpenEx(...)
+T13C8 000:193.888   Firmware: J-Link ARM-OB STM32 compiled Aug 22 2012 19:52:04
+T13C8 000:195.629   Hardware: V7.00
+T13C8 000:195.662   S/N: 20090928
+T13C8 000:195.684   OEM: SEGGER
+T13C8 000:195.706   Feature(s): RDI,FlashDL,FlashBP,JFlash,GDBFull
+T13C8 000:196.721   TELNET listener socket opened on port 19021
+T13C8 000:196.863   WEBSRV Starting webserver
+T13C8 000:197.133   WEBSRV Webserver running on local port 19080
+T13C8 000:197.164 - 4.291ms returns "O.K."
+T13C8 000:197.196 JLINK_GetEmuCaps()
+T13C8 000:197.213 - 0.024ms returns 0x88EA5833
+T13C8 000:197.231 JLINK_TIF_GetAvailable(...)
+T13C8 000:197.417 - 0.200ms
+T13C8 000:197.443 JLINK_SetErrorOutHandler(...)
+T13C8 000:197.458 - 0.022ms
+T13C8 000:197.484 JLINK_ExecCommand("ProjectFile = "C:\Users\86183\Desktop\³ÌÐòÔ´Âë\MDK-ARM\JLinkSettings.ini"", ...). 
+T13C8 000:207.182   Device "STM32F405RG" selected.
+T13C8 000:207.579 - 10.113ms returns 0x00
+T13C8 000:207.610 JLINK_ExecCommand("Device = STM32F427IIHx", ...). 
+T13C8 000:208.023   Device "STM32F405RG" selected.
+T13C8 000:208.406 - 0.800ms returns 0x00
+T13C8 000:208.444 JLINK_ExecCommand("DisableConnectionTimeout", ...). 
+T13C8 000:208.464 - 0.010ms returns 0x01
+T13C8 000:208.481 JLINK_GetHardwareVersion()
+T13C8 000:208.497 - 0.024ms returns 0x11170
+T13C8 000:208.514 JLINK_GetDLLVersion()  returns 67005
+T13C8 000:208.535 JLINK_GetFirmwareString(...)
+T13C8 000:208.551 - 0.023ms
+T13C8 000:208.570 JLINK_GetDLLVersion()  returns 67005
+T13C8 000:208.587 JLINK_GetCompileDateTime()
+T13C8 000:208.602 - 0.023ms
+T13C8 000:208.620 JLINK_GetFirmwareString(...)
+T13C8 000:208.635 - 0.022ms
+T13C8 000:208.652 JLINK_GetHardwareVersion()
+T13C8 000:208.668 - 0.023ms returns 0x11170
+T13C8 000:208.689 JLINK_TIF_Select(JLINKARM_TIF_SWD)
+T13C8 000:209.252 - 0.581ms returns 0x00
+T13C8 000:209.290 JLINK_SetSpeed(5000)
+T13C8 000:209.417 - 0.143ms
+T13C8 000:209.749 JLINK_SetResetType(JLINKARM_RESET_TYPE_NORMAL)
+T13C8 000:209.775 - 0.033ms returns JLINKARM_RESET_TYPE_NORMAL
+T13C8 000:209.791 JLINK_Reset()
+T13C8 000:843.357   STM32 (connect): Can not attach to CPU. Trying connect under reset.
+T13C8 000:999.955   
+  ***** Error: 
+T13C8 001:000.011   STM32: Connecting to CPU via connect under reset failed.
+T13C8 001:214.403   STM32 (connect): Can not attach to CPU. Trying connect under reset.
+T13C8 001:371.265   
+  ***** Error: 
+T13C8 001:371.323   STM32: Connecting to CPU via connect under reset failed.
+T13C8 001:421.813 JLINK_GetId()
+T13C8 001:527.818   STM32 (connect): Can not attach to CPU. Trying connect under reset.
+T13C8 001:685.499   
+  ***** Error: 
+T13C8 001:685.689   STM32: Connecting to CPU via connect under reset failed.
+T13C8 001:897.818   STM32 (connect): Can not attach to CPU. Trying connect under reset.
+T13C8 002:054.174   
+  ***** Error: 
+T13C8 002:054.246   STM32: Connecting to CPU via connect under reset failed.
+T13C8 002:105.012 - 683.238ms   returns 0x00000000
+T13C8 002:105.074 JLINK_GetId()
+T13C8 002:211.434   STM32 (connect): Can not attach to CPU. Trying connect under reset.
+T13C8 002:367.903   
+  ***** Error: 
+T13C8 002:367.975   STM32: Connecting to CPU via connect under reset failed.
+T13C8 002:580.179   STM32 (connect): Can not attach to CPU. Trying connect under reset.
+T13C8 002:738.311   
+  ***** Error: 
+T13C8 002:738.372   STM32: Connecting to CPU via connect under reset failed.
+T13C8 002:789.187 - 684.157ms   returns 0x00000000
+T13C8 002:794.030 JLINK_GetFirmwareString(...)
+T13C8 002:794.077 - 0.054ms
+T39B0 009:582.923 Looking for J-Link GUI Server exe at: D:\New_Keil\ARM\Segger\JLinkGUIServer.exe
+T39B0 009:583.150 Looking for J-Link GUI Server exe at: D:\.Download\JLink_V630d\\JLinkGUIServer.exe
+T39B0 009:884.069 Failed to connect to J-Link GUI Server.
+T13C8 012:843.036 JLINK_Close()
+T13C8 012:854.961 - 11.960ms
+T13C8 012:855.005   
+T13C8 012:855.019   Closed
