@@ -34,5 +34,5 @@ rm\grip.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_pwr_ex.h
 rm\grip.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim.h
 rm\grip.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 rm\grip.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
-rm\grip.o: ../Inc/caculate.h
 rm\grip.o: ../Inc/motor_pid.h
+rm\grip.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h

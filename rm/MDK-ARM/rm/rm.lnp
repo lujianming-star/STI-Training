@@ -28,7 +28,6 @@
 "rm\stm32f4xx_hal_exti.o"
 "rm\system_stm32f4xx.o"
 "rm\grip.o"
-"rm\caculate.o"
 "rm\printf.o"
 "rm\croutine.o"
 "rm\event_groups.o"

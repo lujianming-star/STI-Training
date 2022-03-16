@@ -46,5 +46,6 @@ rm\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/timers.h
 rm\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h
 rm\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/semphr.h
 rm\freertos.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/event_groups.h
-rm\freertos.o: ../Inc/caculate.h
+rm\freertos.o: ../Inc/motor_pid.h
 rm\freertos.o: ../Inc/grip.h
+rm\freertos.o: ../Inc/pid.h

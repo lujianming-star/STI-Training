@@ -26,13 +26,17 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */     
-#include "caculate.h"
-#include "grip.h"		
+#include "motor_pid.h"
+#include "grip.h"
+#include "pid.h"
+
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
-
+extern pid_struct_t motor_pid[7];
+MecArmAttiSturcture  tx;				
+QueueHandle_t	myQueue01Handle;
 
 /* USER CODE END PTD */
 
@@ -48,12 +52,11 @@
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-float servoAngle[4] = {90, 0, 0, 0};
+float servoAngle[4] = {32, -112, -10, 0};
 /* USER CODE END Variables */
 osThreadId ServoTaskHandle;
 osThreadId TopTaskHandle;
 osThreadId caCcommuHandle;
-osMessageQId myQueue01Handle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -89,7 +92,11 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
   */
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
-       
+	myQueue01Handle = xQueueCreate(10, sizeof(MecArmAttiSturcture));
+	tx.pointX = 0.21;
+	tx.pointY = 0.21;
+	tx.pointZ = 0.21;
+	
   /* USER CODE END Init */
 
   /* USER CODE BEGIN RTOS_MUTEX */
@@ -103,11 +110,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
-
-  /* Create the queue(s) */
-  /* definition and creation of myQueue01 */
-  osMessageQDef(myQueue01, 16, uint8_t);
-  myQueue01Handle = osMessageCreate(osMessageQ(myQueue01), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
@@ -148,37 +150,48 @@ void Servo_Task(void const * argument)
 
   /* USER CODE BEGIN Servo_Task */
 	MecArmAttiSturcture  rx;				//接收结构体变量要在接收函数里定义
+	for (uint8_t i = 0; i < 7; i++)
+  {
+    pid_init(&motor_pid[i], 40, 3, 0, 30000, 30000); //init pid parameter, kp=40, ki=3, kd=0, output limit = 30000
+  }
 	
   /* Infinite loop */
   for(;;)
-  {
-//			if(xQueueReceive(myQueue01Handle, &rx, 1000))
-//			{
-//				printf("successfully receive : %d \n", rx.pointX);
-//				if(attitudeGetAngle(rx, servoAngle) != 1)
-//				{
-//					vTaskDelay(5);
-//					servo1(servoAngle[0]);
-//					vTaskDelay(5);
-//					servo2(servoAngle[1]);
-//					vTaskDelay(5);
-//					servo3(servoAngle[2]);
-//					vTaskDelay(5);
-//					for(int i = 0; i < 3; i++)
-//					{
-//						printf(" angle = %f \n ",servoAngle[i]);
-//						osDelay(50);
-//					}
-//				}
-//				rm_servo(-15,v);
-//				vTaskDelay(1500);
-//				rm_servo(350,v);
-//				vTaskDelay(1500);
+  {		
+			xQueueReceive(myQueue01Handle, &(rx), 500);
+			if(xQueueReceive(myQueue01Handle, &(rx), 500))
+			{
+				//printf("receive rx.pointX: %f \n", rx.pointX);
+				//printf("receive rx.pointY: %f \n", rx.pointY);
+				//printf("receive rx.pointZ: %f \n", rx.pointZ);
+				
+				attitudeGetAngle_get(rx, servoAngle);
+				if(attitudeGetAngle_get(rx, servoAngle) != 1)
+				{
+					vTaskDelay(5);
+					//servo1(servoAngle[0]);
+					servo1(32); //32
+					vTaskDelay(5);
+					//servo2(servoAngle[1]);
+					servo2(-112); //-112
+					vTaskDelay(5);
+					//servo3(servoAngle[2]);
+					servo3(-10);	//-10
+					vTaskDelay(5);
+					for(int i = 0; i < 3; i++)
+					{
+						printf(" angle = %f \n ",servoAngle[i]);
+						osDelay(50);
+					}
+				}
 			}
-    //osDelay(1000);
-  }
+												
+	
+	}
+    
+  
   /* USER CODE END Servo_Task */
-
+}
 
 /* USER CODE BEGIN Header_Top_Task */
 /**
@@ -190,22 +203,18 @@ void Servo_Task(void const * argument)
 void Top_Task(void const * argument)
 {
   /* USER CODE BEGIN Top_Task */
-	MecArmAttiSturcture  tx;		//接收的结构体变量和发送的变量
-	tx.pointX = 0.14;
-	tx.pointY = 0.095;
-	//tx.handBiasAngle = 0;
-	//tx.mode = 1;
-	//tx.panAngle = 205;
+	
+
 	
   /* Infinite loop */
 	
   for(;;)
   {
-		xQueueSendToBack(myQueue01Handle, &tx, 0);
-//		if(xQueueSendToBack(myQueue01Handle, &tx, 0))
-//		{
-//			printf("successfully send : %d", tx.mode);
-//		}
+		xQueueSendToBack(myQueue01Handle, (void *)&tx, 0);
+		if(xQueueSendToBack(myQueue01Handle, (void *)&tx, 0))
+		{
+			//printf("successfully send : %f", tx.pointY);
+		}
     osDelay(100);
   }
   /* USER CODE END Top_Task */
