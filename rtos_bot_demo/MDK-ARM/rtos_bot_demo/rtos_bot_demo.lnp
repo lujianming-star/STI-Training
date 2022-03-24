@@ -38,6 +38,14 @@
 "rtos_bot_demo\cmsis_os.o"
 "rtos_bot_demo\heap_4.o"
 "rtos_bot_demo\port.o"
+"rtos_bot_demo\taskhmi.o"
+"rtos_bot_demo\taskcom.o"
+"rtos_bot_demo\taskaction.o"
+"rtos_bot_demo\taskmearm.o"
+"rtos_bot_demo\taskmotcor.o"
+"rtos_bot_demo\taskpir.o"
+"rtos_bot_demo\tasktop.o"
+"rtos_bot_demo\myqueue.o"
 --library_type=microlib --strict --scatter "rtos_bot_demo\rtos_bot_demo.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

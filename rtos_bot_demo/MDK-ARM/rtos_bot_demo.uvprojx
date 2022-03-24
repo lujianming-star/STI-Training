@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>USE_HAL_DRIVER,STM32F427xx,USE_HAL_DRIVER,STM32F427xx</Define>
               <Undefine></Undefine>
-              <IncludePath>../Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc; ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy; ../Middlewares/Third_Party/FreeRTOS/Source/include; ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS; ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F; ../Drivers/CMSIS/Device/ST/STM32F4xx/Include; ../Drivers/CMSIS/Include</IncludePath>
+              <IncludePath>../Inc;  ../Drivers/STM32F4xx_HAL_Driver/Inc;  ../Drivers/STM32F4xx_HAL_Driver/Inc/Legacy;  ../Middlewares/Third_Party/FreeRTOS/Source/include;  ../Middlewares/Third_Party/FreeRTOS/Source/CMSIS_RTOS;  ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F;  ../Drivers/CMSIS/Device/ST/STM32F4xx/Include;  ../Drivers/CMSIS/Include</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -387,9 +387,6 @@
               <FilePath>startup_stm32f427xx.s</FilePath>
             </File>
           </Files>
-        </Group>
-        <Group>
-          <GroupName>::CMSIS</GroupName>
         </Group>
         <Group>
           <GroupName>Application/User</GroupName>
@@ -600,6 +597,104 @@
               <FilePath>../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/port.c</FilePath>
             </File>
           </Files>
+        </Group>
+        <Group>
+          <GroupName>Task</GroupName>
+          <Files>
+            <File>
+              <FileName>TaskHMI.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskHMI.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskHMI.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskHMI.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskCom.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskCom.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskCom.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskCom.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskAction.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskAction.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskAction.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskAction.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskMearm.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskMearm.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskMearm.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskMearm.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskMotcor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskMotcor.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskMotcor.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskMotcor.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskPir.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskPir.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskPir.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskPir.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskMotor.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskMotor.h</FilePath>
+            </File>
+            <File>
+              <FileName>TaskTop.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\TaskTop.c</FilePath>
+            </File>
+            <File>
+              <FileName>TaskTop.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\TaskTop.h</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>myqueue</GroupName>
+          <Files>
+            <File>
+              <FileName>myqueue.h</FileName>
+              <FileType>5</FileType>
+              <FilePath>..\Inc\myqueue.h</FilePath>
+            </File>
+            <File>
+              <FileName>myqueue.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>.\myqueue.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>::CMSIS</GroupName>
         </Group>
       </Groups>
     </Target>

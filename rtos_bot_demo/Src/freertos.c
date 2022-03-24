@@ -48,26 +48,14 @@
 /* USER CODE BEGIN Variables */
 
 /* USER CODE END Variables */
-osThreadId HMITaskHandle;				//串口屏任务，优先级1
-osThreadId ComTaskHandle;				//与树莓派通讯任务，优先级3
-osThreadId TopTaskHandle;				//顶层任务,优先级4
-osThreadId ActionTaskHandle;		//动作执行任务，优先级5
-osThreadId MearmTaskHandle;			//机械臂舵机任务，优先级6
-osThreadId MotcorTaskHandle;		
-osThreadId PirTaskHandle;				//红外传感器任务，优先级7
-osThreadId MotorTaskHandle;			//底盘任务，优先级7
-osMessageQId speedLFQueueHandle, speedLBQueueHandle, speedRFQueueHandle, speedRBQueueHandle, yawQueueHandle;	//控制电机速度	
-
-osMessageQId xposPIRQueueHandle, yposPIRQueueHandle, yawPIRQueueHandle;			//由红外传感器获得的坐标
-osMessageQId xposIMUQueueHandle, yposIMUQueueHandle, yawIMUQueueHandle;			//由陀螺仪获得的坐标
-osMessageQId xposRefQueueHandle, yposRefQueueHandle, yawRefQueueHandle;			//修正后的坐标
-
-osMessageQId G6020AngleQueueHandle;			//云台角度
-osMessageQId G6020AnleRefQueueHandle;		//云台修正角度
-osMessageQId ArmAttitudeQueueHandle;		//机械臂角度控制
-osMessageQId ArmhandstateQueueHandle;		//机械臂状态
-osMessageQId RasperryDataQueueHandle, RasperryitemQueueHandle, RasperrycircleQueueHandle, RasperrylineQueueHandle;	//树莓派物料，圆圈，横线数据
-
+osThreadId HMITaskHandle;
+osThreadId ComTaskHandle;
+osThreadId TopTaskHandle;
+osThreadId ActionTaskHandle;
+osThreadId MearmTaskHandle;
+osThreadId MotcorTaskHandle;
+osThreadId PirTaskHandle;
+osThreadId MotorTaskHandle;
 
 /* Private function prototypes -----------------------------------------------*/
 /* USER CODE BEGIN FunctionPrototypes */
@@ -122,95 +110,6 @@ void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN RTOS_TIMERS */
   /* start timers, add new ones, ... */
   /* USER CODE END RTOS_TIMERS */
-
-  /* Create the queue(s) */
-  /* definition and creation of speedLFQueue */
-  osMessageQDef(speedLFQueue, 1, uint16_t);
-  speedLFQueueHandle = osMessageCreate(osMessageQ(speedLFQueue), NULL);
-
-  /* definition and creation of speedLBQueue */
-  osMessageQDef(speedLBQueue, 1, uint16_t);
-  speedLBQueueHandle = osMessageCreate(osMessageQ(speedLBQueue), NULL);
-
-  /* definition and creation of speedRFQueue */
-  osMessageQDef(speedRFQueue, 1, uint16_t);
-  speedRFQueueHandle = osMessageCreate(osMessageQ(speedRFQueue), NULL);
-
-  /* definition and creation of speedRBQueue */
-  osMessageQDef(speedRBQueue, 1, uint16_t);
-  speedRBQueueHandle = osMessageCreate(osMessageQ(speedRBQueue), NULL);
-
-  /* definition and creation of yawQueue */
-  osMessageQDef(yawQueue, 1, uint16_t);
-  yawQueueHandle = osMessageCreate(osMessageQ(yawQueue), NULL);
-
-  /* definition and creation of xposPIRQueue */
-  osMessageQDef(xposPIRQueue, 1, uint16_t);
-  xposPIRQueueHandle = osMessageCreate(osMessageQ(xposPIRQueue), NULL);
-
-  /* definition and creation of xposIMUQueue */
-  osMessageQDef(xposIMUQueue, 1, uint16_t);
-  xposIMUQueueHandle = osMessageCreate(osMessageQ(xposIMUQueue), NULL);
-
-  /* definition and creation of xposRefQueue */
-  osMessageQDef(xposRefQueue, 1, uint16_t);
-  xposRefQueueHandle = osMessageCreate(osMessageQ(xposRefQueue), NULL);
-
-  /* definition and creation of yposPIRQueue */
-  osMessageQDef(yposPIRQueue, 1, uint16_t);
-  yposPIRQueueHandle = osMessageCreate(osMessageQ(yposPIRQueue), NULL);
-
-  /* definition and creation of yposIMUQueue */
-  osMessageQDef(yposIMUQueue, 1, uint16_t);
-  yposIMUQueueHandle = osMessageCreate(osMessageQ(yposIMUQueue), NULL);
-
-  /* definition and creation of yposRefQueue */
-  osMessageQDef(yposRefQueue, 1, uint16_t);
-  yposRefQueueHandle = osMessageCreate(osMessageQ(yposRefQueue), NULL);
-
-  /* definition and creation of yawPIRQueue */
-  osMessageQDef(yawPIRQueue, 1, uint16_t);
-  yawPIRQueueHandle = osMessageCreate(osMessageQ(yawPIRQueue), NULL);
-
-  /* definition and creation of yawIMUQueue */
-  osMessageQDef(yawIMUQueue, 1, uint16_t);
-  yawIMUQueueHandle = osMessageCreate(osMessageQ(yawIMUQueue), NULL);
-
-  /* definition and creation of yawRefQueue */
-  osMessageQDef(yawRefQueue, 1, uint16_t);
-  yawRefQueueHandle = osMessageCreate(osMessageQ(yawRefQueue), NULL);
-
-  /* definition and creation of G6020AngleQueue */
-  osMessageQDef(G6020AngleQueue, 1, uint16_t);
-  G6020AngleQueueHandle = osMessageCreate(osMessageQ(G6020AngleQueue), NULL);
-
-  /* definition and creation of G6020AnleRefQueue */
-  osMessageQDef(G6020AnleRefQueue, 1, uint16_t);
-  G6020AnleRefQueueHandle = osMessageCreate(osMessageQ(G6020AnleRefQueue), NULL);
-
-  /* definition and creation of ArmAttitudeQueue */
-  osMessageQDef(ArmAttitudeQueue, 1, uint16_t);
-  ArmAttitudeQueueHandle = osMessageCreate(osMessageQ(ArmAttitudeQueue), NULL);
-
-  /* definition and creation of ArmhandstateQueue */
-  osMessageQDef(ArmhandstateQueue, 1, uint16_t);
-  ArmhandstateQueueHandle = osMessageCreate(osMessageQ(ArmhandstateQueue), NULL);
-
-  /* definition and creation of RasperryDataQueue */
-  osMessageQDef(RasperryDataQueue, 1, uint16_t);
-  RasperryDataQueueHandle = osMessageCreate(osMessageQ(RasperryDataQueue), NULL);
-
-  /* definition and creation of RasperryitemQueue */
-  osMessageQDef(RasperryitemQueue, 1, uint16_t);
-  RasperryitemQueueHandle = osMessageCreate(osMessageQ(RasperryitemQueue), NULL);
-
-  /* definition and creation of RasperrycircleQueue */
-  osMessageQDef(RasperrycircleQueue, 1, uint16_t);
-  RasperrycircleQueueHandle = osMessageCreate(osMessageQ(RasperrycircleQueue), NULL);
-
-  /* definition and creation of RasperrylineQueue */
-  osMessageQDef(RasperrylineQueue, 1, uint16_t);
-  RasperrylineQueueHandle = osMessageCreate(osMessageQ(RasperrylineQueue), NULL);
 
   /* USER CODE BEGIN RTOS_QUEUES */
   /* add queues, ... */
