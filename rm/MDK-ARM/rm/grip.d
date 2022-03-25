@@ -36,3 +36,11 @@ rm\grip.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_tim_ex.h
 rm\grip.o: ../Drivers/STM32F4xx_HAL_Driver/Inc/stm32f4xx_hal_uart.h
 rm\grip.o: ../Inc/motor_pid.h
 rm\grip.o: D:\keil5\ARM\ARMCC\Bin\..\include\math.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/FreeRTOS.h
+rm\grip.o: ../Inc/FreeRTOSConfig.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/projdefs.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/portable.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/deprecated_definitions.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/portable/RVDS/ARM_CM4F/portmacro.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/mpu_wrappers.h
+rm\grip.o: ../Middlewares/Third_Party/FreeRTOS/Source/include/queue.h

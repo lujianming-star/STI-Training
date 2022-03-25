@@ -12,7 +12,8 @@ void clip(double angle);			//夹子舵机
 void init_pos();
 void move_get();
 void move_put();
-
+void move_get2();
+void up();
 typedef struct
 {
   float pointX;		//y, z面决定机械臂所在平面

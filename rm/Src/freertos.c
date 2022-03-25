@@ -35,7 +35,7 @@
 /* Private typedef -----------------------------------------------------------*/
 /* USER CODE BEGIN PTD */
 extern pid_struct_t motor_pid[7];
-MecArmAttiSturcture  tx;				
+//MecArmAttiSturcture  tx;				
 QueueHandle_t	myQueue01Handle;
 
 /* USER CODE END PTD */
@@ -52,7 +52,8 @@ QueueHandle_t	myQueue01Handle;
 
 /* Private variables ---------------------------------------------------------*/
 /* USER CODE BEGIN Variables */
-float servoAngle[4] = {32, -112, -10, 0};
+float servoAngle[4] = {0, 7, -74, -23};
+float servoRefAngle[4] = {0, 7, -74, -23};
 /* USER CODE END Variables */
 osThreadId ServoTaskHandle;
 osThreadId TopTaskHandle;
@@ -93,9 +94,13 @@ void vApplicationGetIdleTaskMemory( StaticTask_t **ppxIdleTaskTCBBuffer, StackTy
 void MX_FREERTOS_Init(void) {
   /* USER CODE BEGIN Init */
 	myQueue01Handle = xQueueCreate(10, sizeof(MecArmAttiSturcture));
-	tx.pointX = 0.21;
-	tx.pointY = 0.21;
-	tx.pointZ = 0.21;
+	for(int i = 0; i < 4; i++)
+	{
+		servoRefAngle[i] = servoAngle[i];
+	}
+	//tx.pointX = 0.35;
+	//tx.pointY = 0.21;
+	//tx.pointZ = 0.27;
 	
   /* USER CODE END Init */
 
@@ -158,7 +163,7 @@ void Servo_Task(void const * argument)
   /* Infinite loop */
   for(;;)
   {		
-			xQueueReceive(myQueue01Handle, &(rx), 500);
+			//xQueueReceive(myQueue01Handle, &(rx), 500);
 			if(xQueueReceive(myQueue01Handle, &(rx), 500))
 			{
 				//printf("receive rx.pointX: %f \n", rx.pointX);
@@ -168,17 +173,17 @@ void Servo_Task(void const * argument)
 				attitudeGetAngle_get(rx, servoAngle);
 				if(attitudeGetAngle_get(rx, servoAngle) != 1)
 				{
+					
 					vTaskDelay(5);
-					//servo1(servoAngle[0]);
-					servo1(32); //32
+					servo1(servoAngle[0]);					
 					vTaskDelay(5);
-					//servo2(servoAngle[1]);
-					servo2(-112); //-112
+					servo2(servoAngle[1]);					
 					vTaskDelay(5);
-					//servo3(servoAngle[2]);
-					servo3(-10);	//-10
+					servo3(servoAngle[2]);					
+					rm_servo(servoAngle[3],50);
 					vTaskDelay(5);
-					for(int i = 0; i < 3; i++)
+					//clip(-26);//-26开，-10夹紧   -37张角最大
+					for(int i = 0; i < 4; i++)
 					{
 						printf(" angle = %f \n ",servoAngle[i]);
 						osDelay(50);
@@ -210,11 +215,15 @@ void Top_Task(void const * argument)
 	
   for(;;)
   {
-		xQueueSendToBack(myQueue01Handle, (void *)&tx, 0);
-		if(xQueueSendToBack(myQueue01Handle, (void *)&tx, 0))
-		{
+		//xQueueSendToBack(myQueue01Handle, (void *)&tx, 0);
+		//if(xQueueSendToBack(myQueue01Handle, (void *)&tx, 0))
+		//{
 			//printf("successfully send : %f", tx.pointY);
-		}
+		//}
+		init_pos();
+		move_get();
+		move_get2();
+		up();
     osDelay(100);
   }
   /* USER CODE END Top_Task */
